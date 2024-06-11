@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 
@@ -8,6 +8,7 @@ import Home from "./pages/Home/Home";
 import Cart from "./pages/Cart/Cart";
 import PlaceOrder from "./pages/PlaceOrder/PlaceOrder";
 import Footer from "./components/Footer/Footer";
+import LoginPopUp from "./components/LoginPopUp/LoginPopUp";
 
 // Create a custom theme
 const theme = createTheme({
@@ -31,10 +32,13 @@ const theme = createTheme({
 });
 
 function App() {
+  const [showLogin, setShowLogin] = useState(false);
+
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline /> {/* Applies global styles and resets */}
-      <Navbar />
+      <CssBaseline />
+      {showLogin ? <LoginPopUp /> : <></>}
+      <Navbar setShowLogin={setShowLogin} />
       <Routes>
         <Route>
           <Route path="/" element={<Home />} />

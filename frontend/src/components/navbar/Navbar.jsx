@@ -7,7 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import { assets } from "../../assets/frontend_assets/assets";
 import { Stack } from "@mui/material";
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar({ setShowLogin }) {
   const [activeButton, setActiveButton] = React.useState("Home");
 
   const handleHomeClick = () => {
@@ -100,7 +100,12 @@ export default function ButtonAppBar() {
               Contact Us
             </Button>
           </Stack>
-          <Button variant="outlined" sx={{ borderRadius: 5, mr: 5 }}>
+          <Button
+            variant="outlined"
+            sx={{ borderRadius: 5, mr: 5 }}
+            onClick={() => {
+              setShowLogin(true);
+            }}>
             Login
           </Button>
         </Toolbar>
