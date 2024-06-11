@@ -7,10 +7,10 @@ const ShoeDisplay = ({ category }) => {
   const { shoe_list } = useContext(StoreContext);
 
   return (
-    <div>
-      <Typography variant="h5" sx={{ textAlign: "center", mb: 2 }}>
+    <div id="display">
+      {/* <Typography variant="h5" sx={{ textAlign: "center", mb: 2 }}>
         Shoe Display
-      </Typography>
+      </Typography> */}
       <div>
         <Grid
           container

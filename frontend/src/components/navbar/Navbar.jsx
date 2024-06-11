@@ -10,6 +10,25 @@ import { Stack } from "@mui/material";
 export default function ButtonAppBar() {
   const [activeButton, setActiveButton] = React.useState("Home");
 
+  const handleHomeClick = () => {
+    const menuElement = document.getElementById("home");
+    if (menuElement) {
+      menuElement.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  const handleMenuClick = () => {
+    const menuElement = document.getElementById("menu");
+    if (menuElement) {
+      menuElement.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  const handleContactClick = () => {
+    const menuElement = document.getElementById("footer");
+    if (menuElement) {
+      menuElement.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -42,7 +61,10 @@ export default function ButtonAppBar() {
                 textDecoration: activeButton === "Home" ? "underline" : "none",
                 textDecorationThickness: activeButton === "Home" ? "3px" : "0",
               }}
-              onClick={() => setActiveButton("Home")}>
+              onClick={() => {
+                handleHomeClick();
+                setActiveButton("Home");
+              }}>
               Home
             </Button>
             <Button
@@ -54,8 +76,11 @@ export default function ButtonAppBar() {
                 textDecoration: activeButton === "Menu" ? "underline" : "none",
                 textDecorationThickness: activeButton === "Menu" ? "3px" : "0",
               }}
-              onClick={() => setActiveButton("Menu")}>
-              Menu
+              onClick={() => {
+                setActiveButton("Menu");
+                handleMenuClick();
+              }}>
+              Brands
             </Button>
             <Button
               sx={{
@@ -68,7 +93,10 @@ export default function ButtonAppBar() {
                 textDecorationThickness:
                   activeButton === "Contact Us" ? "3px" : "0",
               }}
-              onClick={() => setActiveButton("Contact Us")}>
+              onClick={() => {
+                setActiveButton("Contact Us");
+                handleContactClick();
+              }}>
               Contact Us
             </Button>
           </Stack>

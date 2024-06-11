@@ -8,7 +8,7 @@ import ShoeDisplay from "../../components/ShoeDisplay/ShoeDisplay";
 const Home = () => {
   const [category, setCategory] = useState("All");
   return (
-    <>
+    <div id="home">
       <Box
         sx={{
           backgroundImage: "linear-gradient(180deg , #000000 , #FD7401 )",
@@ -20,7 +20,7 @@ const Home = () => {
       <Box sx={{ pr: 8, pl: 8 }}>
         <ShoeDisplay category={category} />
       </Box>
-    </>
+    </div>
   );
 };
 
