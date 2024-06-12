@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom"; // Add this import statement
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -6,6 +7,8 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import { assets } from "../../assets/frontend_assets/assets";
 import { Stack } from "@mui/material";
+
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
 export default function ButtonAppBar({ setShowLogin }) {
   const [activeButton, setActiveButton] = React.useState("Home");
@@ -47,41 +50,53 @@ export default function ButtonAppBar({ setShowLogin }) {
             sx={{
               ml: 4,
             }}>
-            <img src={assets.cloudlogo} style={{ maxHeight: 50 }} />
+            <img
+              onClick={() => (window.location.href = "/")}
+              src={assets.cloudlogo}
+              style={{ maxHeight: 50 }}
+            />
           </IconButton>
           <Stack
             direction={"row"}
             sx={{ flexGrow: 1, justifyContent: "center" }}>
-            <Button
-              sx={{
-                "&:hover": {
-                  textDecoration: "underline",
-                  textDecorationThickness: "1px",
-                },
-                textDecoration: activeButton === "Home" ? "underline" : "none",
-                textDecorationThickness: activeButton === "Home" ? "3px" : "0",
-              }}
-              onClick={() => {
-                handleHomeClick();
-                setActiveButton("Home");
-              }}>
-              Home
-            </Button>
-            <Button
-              sx={{
-                "&:hover": {
-                  textDecoration: "underline",
-                  textDecorationThickness: "1px",
-                },
-                textDecoration: activeButton === "Menu" ? "underline" : "none",
-                textDecorationThickness: activeButton === "Menu" ? "3px" : "0",
-              }}
-              onClick={() => {
-                setActiveButton("Menu");
-                handleMenuClick();
-              }}>
-              Brands
-            </Button>
+            <Link to="/">
+              <Button
+                sx={{
+                  "&:hover": {
+                    textDecoration: "underline",
+                    textDecorationThickness: "1px",
+                  },
+                  textDecoration:
+                    activeButton === "Home" ? "underline" : "none",
+                  textDecorationThickness:
+                    activeButton === "Home" ? "3px" : "0",
+                }}
+                onClick={() => {
+                  handleHomeClick();
+                  setActiveButton("Home");
+                }}>
+                Home
+              </Button>
+            </Link>
+            <Link to="/#menu">
+              <Button
+                sx={{
+                  "&:hover": {
+                    textDecoration: "underline",
+                    textDecorationThickness: "1px",
+                  },
+                  textDecoration:
+                    activeButton === "Menu" ? "underline" : "none",
+                  textDecorationThickness:
+                    activeButton === "Menu" ? "3px" : "0",
+                }}
+                onClick={() => {
+                  setActiveButton("Menu");
+                  handleMenuClick();
+                }}>
+                Brands
+              </Button>
+            </Link>
             <Button
               sx={{
                 "&:hover": {
@@ -100,6 +115,14 @@ export default function ButtonAppBar({ setShowLogin }) {
               Contact Us
             </Button>
           </Stack>
+          <Link to="/cart">
+            <ShoppingCartOutlinedIcon
+              sx={{ color: "#FD7401", mr: 4 }}
+              // onClick={() => {
+              //   window.location.href = "/cart";
+              // }}
+            />
+          </Link>
           <Button
             variant="outlined"
             sx={{ borderRadius: 5, mr: 5 }}
