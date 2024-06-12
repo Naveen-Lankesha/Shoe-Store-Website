@@ -6,14 +6,27 @@ import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 const LoginPopUp = ({ setShowLogin }) => {
   const [currState, setCurrState] = useState("Login");
   return (
-    <Box sx={{ p: 2 }}>
+    <Box sx={{ p: 4 }}>
       <Stack direction={"row"}>
-        <h2 style={{ cursor: "pointer", marginBottom: 20 }}>{currState}</h2>
+        <h2
+          style={{
+            cursor: "pointer",
+            marginBottom: 30,
+            borderBottom: "3px solid orange",
+          }}>
+          {currState}
+        </h2>
         <CloseIcon
           onClick={() => {
             setShowLogin(false);
           }}
-          style={{ position: "absolute", top: 1, right: 1, cursor: "pointer" }}
+          style={{
+            position: "absolute",
+            top: 4,
+            right: 4,
+            cursor: "pointer",
+            color: "orange",
+          }}
         />
       </Stack>
       <div>
@@ -21,6 +34,7 @@ const LoginPopUp = ({ setShowLogin }) => {
           {currState === "Login" ? null : (
             <TextField
               required
+              size="small"
               id="outlined-required"
               label="Your Name"
               defaultValue=""
@@ -30,6 +44,7 @@ const LoginPopUp = ({ setShowLogin }) => {
 
           <TextField
             required
+            size="small"
             id="outlined-required"
             label="Email"
             defaultValue=""
@@ -37,19 +52,20 @@ const LoginPopUp = ({ setShowLogin }) => {
           />
           <TextField
             required
+            size="small"
             id="outlined-required"
             label="Password"
             defaultValue=""
-            sx={{ pb: 2 }}
+            sx={{ pb: 4 }}
           />
           <Button sx={{ p: 1, mb: 2 }} variant="contained">
-            <Typography sx={{ fontWeight: 600 }}>
+            <Typography sx={{ fontWeight: 400 }}>
               {currState === "Sign Up" ? "Create Account" : "Login"}
             </Typography>
           </Button>
           <Box>
             {currState === "Login" ? (
-              <Typography>
+              <Typography sx={{ fontSize: 14 }}>
                 Creat a new account ?{" "}
                 <span
                   onClick={() => setCurrState("Sign Up")}
@@ -58,7 +74,7 @@ const LoginPopUp = ({ setShowLogin }) => {
                 </span>
               </Typography>
             ) : (
-              <Typography>
+              <Typography sx={{ fontSize: 14 }}>
                 Already have an account ?{" "}
                 <span
                   onClick={() => setCurrState("Login")}

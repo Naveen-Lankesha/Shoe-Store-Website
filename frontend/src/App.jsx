@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Box, CssBaseline } from "@mui/material";
+import { Box, CssBaseline, Dialog } from "@mui/material";
 
 import Navbar from "./components/navbar/Navbar";
 import { Route, Routes } from "react-router-dom";
@@ -36,19 +36,20 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline>
-        {showLogin ? <LoginPopUp setShowLogin={setShowLogin} /> : <></>}
-        <Navbar setShowLogin={setShowLogin} />
+      <CssBaseline />
+      <Dialog open={showLogin} onClose={() => setShowLogin(false)}>
+        <LoginPopUp setShowLogin={setShowLogin} />
+      </Dialog>
+      <Navbar setShowLogin={setShowLogin} />
 
-        <Routes>
-          <Route>
-            <Route path="/" element={<Home />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/place-order" element={<PlaceOrder />} />
-          </Route>
-        </Routes>
-        <Footer />
-      </CssBaseline>
+      <Routes>
+        <Route>
+          <Route path="/" element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/place-order" element={<PlaceOrder />} />
+        </Route>
+      </Routes>
+      <Footer />
     </ThemeProvider>
   );
 }
