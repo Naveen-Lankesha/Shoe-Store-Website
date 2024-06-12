@@ -10,10 +10,10 @@ import { assets } from "../../assets/frontend_assets/assets";
 
 const Footer = () => {
   return (
-    <div id="footer">
+    <div id="footer" style={{ marginTop: 30 }}>
       <Stack
         direction={{ md: "column", lg: "row" }}
-        sx={{ pl: 8, pr: 8, pt: 8, pb: 4, mt: 4, backgroundColor: "#050706" }}>
+        sx={{ pl: 8, pr: 8, pt: 8, pb: 4, backgroundColor: "#050706" }}>
         <Box flex={1} sx={{ pr: 8 }}>
           <Stack spacing={2}>
             <img

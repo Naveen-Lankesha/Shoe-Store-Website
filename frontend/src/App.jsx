@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { CssBaseline } from "@mui/material";
+import { Box, CssBaseline } from "@mui/material";
 
 import Navbar from "./components/navbar/Navbar";
 import { Route, Routes } from "react-router-dom";
@@ -36,22 +36,57 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      {showLogin ? <LoginPopUp /> : <></>}
-      <Navbar setShowLogin={setShowLogin} />
-      <Routes>
-        <Route>
-          <Route path="/" element={<Home />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/place-order" element={<PlaceOrder />} />
-        </Route>
-      </Routes>
-      <Footer />
+      <CssBaseline>
+        {showLogin ? <LoginPopUp setShowLogin={setShowLogin} /> : <></>}
+        <Navbar setShowLogin={setShowLogin} />
+
+        <Routes>
+          <Route>
+            <Route path="/" element={<Home />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/place-order" element={<PlaceOrder />} />
+          </Route>
+        </Routes>
+        <Footer />
+      </CssBaseline>
     </ThemeProvider>
   );
 }
 
 export default App;
+
+// import React from "react";
+
+// import Navbar from "./components/navbar/Navbar";
+
+// const App = () => {
+//   return (
+//     <div>
+//       <Navbar />
+//       <Navbar />
+//       <Navbar />
+//       <Navbar />
+//       <Navbar />
+//       <Navbar />
+//       <Navbar />
+//       <Navbar />
+//       <Navbar />
+//       <Navbar />
+//       <Navbar />
+//       <Navbar />
+//       <Navbar />
+//       <Navbar />
+//       <Navbar />
+//       <Navbar />
+//       <Navbar />
+//       <Navbar />
+//     </div>
+//   );
+// };
+
+// export default App;
+
+// ---------------------------------------
 
 // import React from "react";
 // import Navbar from "./components/navbar/Navbar";

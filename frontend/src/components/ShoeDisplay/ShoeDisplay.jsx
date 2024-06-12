@@ -7,7 +7,7 @@ const ShoeDisplay = ({ category }) => {
   const { shoe_list } = useContext(StoreContext);
 
   return (
-    <div id="display">
+    <div id="display" style={{ margin: 0, padding: 0 }}>
       {/* <Typography variant="h5" sx={{ textAlign: "center", mb: 2 }}>
         Shoe Display
       </Typography> */}
