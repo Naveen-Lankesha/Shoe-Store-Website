@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { connectDB } from "./config/db.js";
+import shoeRouter from "./routes/shoeRoute.js";
 
 //-----------db pw: 26268
 //app config
@@ -13,6 +14,9 @@ app.use(cors());
 
 //db connection
 connectDB();
+
+// API endpoints
+app.use("/api/shoe", shoeRouter);
 
 app.get("/", (req, res) => {
   res.send("API working");
