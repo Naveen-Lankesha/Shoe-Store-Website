@@ -1,5 +1,6 @@
 import * as React from "react";
-import { Link } from "react-router-dom"; // Add this import statement
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom"; // Add this import statement
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -8,7 +9,11 @@ import IconButton from "@mui/material/IconButton";
 import { assets } from "../../assets/frontend_assets/assets";
 import { Stack } from "@mui/material";
 
+import { StoreContext } from "../../context/StoreContext";
+
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import HdrStrongIcon from "@mui/icons-material/HdrStrong";
+import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 
 export default function ButtonAppBar({ setShowLogin }) {
   const [activeButton, setActiveButton] = React.useState("Home");
@@ -31,6 +36,9 @@ export default function ButtonAppBar({ setShowLogin }) {
       menuElement.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  // for cart button red dot
+  const { getTotalCartAmount } = useContext(StoreContext);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -116,16 +124,27 @@ export default function ButtonAppBar({ setShowLogin }) {
             </Button>
           </Stack>
           <Link to="/cart">
-            <ShoppingCartOutlinedIcon
-              sx={{ color: "#FD7401", mr: 4 }}
-              // onClick={() => {
-              //   window.location.href = "/cart";
-              // }}
-            />
+            <Stack direction={"row-reverse"}>
+              {getTotalCartAmount() > 0 ? (
+                <FiberManualRecordIcon
+                  sx={{
+                    color: "green",
+                    fontSize: "small",
+                  }}
+                />
+              ) : null}
+
+              <ShoppingCartOutlinedIcon
+                sx={{ color: "#FD7401" }}
+                // onClick={() => {
+                //   window.location.href = "/cart";
+                // }}
+              />
+            </Stack>
           </Link>
           <Button
             variant="outlined"
-            sx={{ borderRadius: 5, mr: 5 }}
+            sx={{ borderRadius: 5, mr: 5, ml: 4 }}
             onClick={() => {
               setShowLogin(true);
             }}>
