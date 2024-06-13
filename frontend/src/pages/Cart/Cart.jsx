@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 
@@ -7,6 +8,10 @@ import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined
 const Cart = () => {
   const { shoe_list, cartItems, removeFromCart, size, getTotalCartAmount } =
     useContext(StoreContext);
+
+  //navigate to place order page
+  const navigate = useNavigate();
+
   return (
     <Box sx={{ p: 8 }}>
       <Stack display={"flex"} direction={"row"}>
@@ -93,15 +98,21 @@ const Cart = () => {
               </Stack>
               <Stack flex={1}>
                 <Typography id="Sub_Total">£{getTotalCartAmount()}</Typography>
-                <Typography id="Delivery_Free">£{2}</Typography>
+                <Typography id="Delivery_Free">
+                  £{getTotalCartAmount() === 0 ? 0 : 2}
+                </Typography>
                 <Typography id="Total" sx={{ fontWeight: "bold" }}>
-                  £{getTotalCartAmount() + 2}
+                  £{getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}
                 </Typography>
               </Stack>
             </Stack>
           </Box>
           <Box sx={{ mt: 2 }}>
-            <Button variant="contained">PROCEED TO CHECKOUT</Button>
+            <Button
+              variant="contained"
+              onClick={() => navigate("/place-order")}>
+              PROCEED TO CHECKOUT
+            </Button>
           </Box>
         </Box>
         <Box flex={1} sx={{ mb: 6 }}>
