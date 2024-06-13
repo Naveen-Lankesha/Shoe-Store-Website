@@ -4,8 +4,15 @@ import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOu
 import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutlineRounded";
 import { StoreContext } from "../../context/StoreContext";
 
+//size
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+
 const ShoeItem = ({ id, name, price, description, image }) => {
-  const { cartItems, addToCart, removeFromCart } = useContext(StoreContext);
+  const { size, handleChange, cartItems, addToCart, removeFromCart } =
+    useContext(StoreContext);
 
   return (
     <Paper>
@@ -27,6 +34,29 @@ const ShoeItem = ({ id, name, price, description, image }) => {
               />
             </Box>
           )}
+        </Box>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <FormControl sx={{ mt: 1, minWidth: 120 }} size="small">
+            <InputLabel id=" demo-select-small-label">Size</InputLabel>
+            <Select
+              labelId=" demo-select-small-label"
+              id="demo-select-small"
+              value={size[id] || ""}
+              onChange={(event) => handleChange(id, event)}
+              autoWidth
+              label="Size">
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={6}>6</MenuItem>
+              <MenuItem value={7}>7</MenuItem>
+              <MenuItem value={8}>8</MenuItem>
+              <MenuItem value={9}>9</MenuItem>
+              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={11}>11</MenuItem>
+            </Select>
+          </FormControl>
         </Box>
       </Box>
       <Box sx={{ p: 2 }}>
