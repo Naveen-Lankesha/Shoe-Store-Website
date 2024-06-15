@@ -51,4 +51,23 @@ const removeShoe = async (req, res) => {
   }
 };
 
-export { addShoe, listShoe, removeShoe }; // Exporting the addShoe function to make it accessible from other modules
+//remove all shoe items
+const removeAllShoes = async (req, res) => {
+  try {
+    const shoes = await shoeModel.find({}); // Fetching all shoe items from the database
+
+    shoes.forEach((shoe) => {
+      const imagePath = `uploads/${shoe.image}`; // Constructing the path to the image file
+      fs.unlinkSync(imagePath, () => {}); // Deleting the image file from the file system
+    });
+
+    await shoeModel.deleteMany({}); // Removing all shoe items from the database
+
+    res.json({ success: true, message: "All shoes removed successfully" }); // Sending a JSON response indicating that all shoes were removed successfully
+  } catch (error) {
+    console.log(error); // Logging any error that occurred during the removal process
+    res.json({ success: false, message: "Failed to remove all shoes" }); // Sending a JSON response indicating that the removal failed
+  }
+};
+
+export { addShoe, listShoe, removeShoe, removeAllShoes }; // Exporting the addShoe function to make it accessible from other modules
