@@ -23,4 +23,32 @@ const addShoe = async (req, res) => {
   }
 };
 
-export { addShoe }; // Exporting the addShoe function to make it accessible from other modules
+// all shoe list
+const listShoe = async (req, res) => {
+  try {
+    const shoes = await shoeModel.find({}); // Fetching all shoe items from the database
+    res.json({ success: true, data: shoes }); // Sending a JSON response with the list of shoe items
+  } catch (error) {
+    console.log(error); // Logging any error that occurred during the fetching process
+    res.json({ success: false, message: "Failed to fetch shoe list" }); // Sending a JSON response indicating that the fetching failed
+  }
+};
+
+//remove shoe item
+const removeShoe = async (req, res) => {
+  try {
+    const shoe = await shoeModel.findById(req.body.id); // Finding the shoe item by ID
+    const imagePath = `uploads/${shoe.image}`; // Constructing the path to the image file
+
+    fs.unlinkSync(imagePath, () => {}); // Deleting the image file from the file system
+
+    await shoeModel.findByIdAndDelete(req.body.id); // Removing the shoe item from the database
+
+    res.json({ success: true, message: "Shoe removed successfully" }); // Sending a JSON response indicating that the shoe was removed successfully
+  } catch (error) {
+    console.log(error); // Logging any error that occurred during the removal process
+    res.json({ success: false, message: "Failed to remove shoe" }); // Sending a JSON response indicating that the removal failed
+  }
+};
+
+export { addShoe, listShoe, removeShoe }; // Exporting the addShoe function to make it accessible from other modules

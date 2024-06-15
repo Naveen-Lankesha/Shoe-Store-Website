@@ -17,6 +17,7 @@ connectDB();
 
 // API endpoints
 app.use("/api/shoe", shoeRouter);
+app.use("/images", express.static("uploads")); // Serving the uploaded images from the "uploads" folder by mounting the "/images" route to the "uploads" folder using express.static middleware
 
 app.get("/", (req, res) => {
   res.send("API working");
