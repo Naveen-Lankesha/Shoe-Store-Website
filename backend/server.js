@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import { connectDB } from "./config/db.js";
 import shoeRouter from "./routes/shoeRoute.js";
+import userRouter from "./routes/userRoute.js";
+import "dotenv/config";
 
 //-----------db pw: 26268
 //app config
@@ -18,6 +20,7 @@ connectDB();
 // API endpoints
 app.use("/api/shoe", shoeRouter);
 app.use("/images", express.static("uploads")); // Serving the uploaded images from the "uploads" folder by mounting the "/images" route to the "uploads" folder using express.static middleware
+app.use("/api/user", userRouter);
 
 app.get("/", (req, res) => {
   res.send("API working");
