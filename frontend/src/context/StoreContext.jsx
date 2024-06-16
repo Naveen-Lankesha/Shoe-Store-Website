@@ -5,6 +5,9 @@ import { shoe_list } from "../assets/frontend_assets/assets";
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
+  const url = "http://localhost:4000";
+  const [token, setToken] = useState("");
+
   const [cartItems, setCartItems] = useState({});
   const [size, setSize] = useState({}); // Update the initial state to be an object
 
@@ -37,6 +40,13 @@ const StoreContextProvider = (props) => {
     return totalAmount;
   };
 
+  //prevet refresh logout
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setToken(localStorage.getItem("token"));
+    }
+  }, []);
+
   const contextValue = {
     size,
     handleChange,
@@ -46,6 +56,9 @@ const StoreContextProvider = (props) => {
     addToCart,
     removeFromCart,
     getTotalCartAmount,
+    url,
+    token,
+    setToken,
   };
 
   return (
