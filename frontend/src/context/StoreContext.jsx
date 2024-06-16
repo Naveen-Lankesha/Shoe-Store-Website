@@ -1,12 +1,14 @@
 import React, { createContext, useEffect, useState } from "react";
+import axios from "axios";
 
-import { shoe_list } from "../assets/frontend_assets/assets";
+//import { shoe_list } from "../assets/frontend_assets/assets";
 
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
   const url = "http://localhost:4000";
   const [token, setToken] = useState("");
+  const [shoe_list, setShoeList] = useState([]);
 
   const [cartItems, setCartItems] = useState({});
   const [size, setSize] = useState({}); // Update the initial state to be an object
@@ -40,11 +42,21 @@ const StoreContextProvider = (props) => {
     return totalAmount;
   };
 
+  // fetch data from backend
+  const fetchShoeList = async () => {
+    const response = await axios.get(`${url}/api/shoe/list`);
+    setShoeList(response.data.data);
+  };
+
   //prevet refresh logout
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      setToken(localStorage.getItem("token"));
+    async function fetchData() {
+      await fetchShoeList();
+      if (localStorage.getItem("token")) {
+        setToken(localStorage.getItem("token"));
+      }
     }
+    fetchData();
   }, []);
 
   const contextValue = {
