@@ -176,7 +176,7 @@ const Add = () => {
         <DialogTitle sx={{ fontWeight: 600 }}>Confirm Add</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Are you sure you want to add this product?
+            Are you sure you want to add this shoe?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
