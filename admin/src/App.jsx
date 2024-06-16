@@ -12,6 +12,10 @@ import { orange } from "@mui/material/colors";
 //theme imports
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
+//notification imports
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 // Create a custom theme
 const theme = createTheme({
   palette: {
@@ -37,6 +41,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Navbar />
+      <ToastContainer />
       <Box display={"flex"}>
         <Box flex={1}>
           <Sidebar />

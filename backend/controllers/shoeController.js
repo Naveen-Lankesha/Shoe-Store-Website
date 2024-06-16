@@ -16,7 +16,7 @@ const addShoe = async (req, res) => {
 
   try {
     await shoe.save(); // Saving the shoe instance to the database
-    res.json({ succes: true, message: "Shoe added successfully" }); // Sending a JSON response indicating that the shoe was added successfully
+    res.json({ success: true, message: "Shoe added successfully" }); // Sending a JSON response indicating that the shoe was added successfully
   } catch (error) {
     console.log(error); // Logging any error that occurred during the saving process
     res.json({ success: false, message: "Failed to add shoe" }); // Sending a JSON response indicating that the shoe addition failed

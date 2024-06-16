@@ -18,6 +18,7 @@ import {
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { assets } from "../../assets/assets";
+import { toast } from "react-toastify";
 
 const Add = () => {
   const [image, setImage] = useState(null);
@@ -80,8 +81,10 @@ const Add = () => {
       });
       setImage(null);
       console.log("Form submitted successfully", response.data);
+      toast.success(response.data.message);
     } catch (error) {
       console.error("Error submitting form", error);
+      toast.error(error.response.data.message);
     } finally {
       handleDialogClose();
     }
