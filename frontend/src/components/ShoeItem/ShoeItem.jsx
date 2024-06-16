@@ -11,13 +11,17 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 const ShoeItem = ({ id, name, price, description, image }) => {
-  const { size, handleChange, cartItems, addToCart, removeFromCart } =
+  const { size, handleChange, cartItems, addToCart, removeFromCart, url } =
     useContext(StoreContext);
 
   return (
     <Paper>
       <Box>
-        <img src={image} alt=" " style={{ width: "100%", height: "auto" }} />
+        <img
+          src={url + "/images/" + image}
+          alt=" "
+          style={{ width: "100%", height: "auto" }}
+        />
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           {!cartItems[id] ? (
             <AddCircleOutlineOutlinedIcon onClick={() => addToCart(id)} />
