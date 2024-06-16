@@ -16,9 +16,7 @@ import { toast } from "react-toastify";
 import { grey } from "@mui/material/colors";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-const List = () => {
-  const url = "http://localhost:4000";
-
+const List = ({ url }) => {
   const [list, setList] = useState([]);
   const [openDialog, setOpenDialog] = useState(false);
   const [shoeIdToDelete, setShoeIdToDelete] = useState(null);
@@ -27,7 +25,7 @@ const List = () => {
     const response = await axios.get(`${url}/api/shoe/list`);
     if (response.data.success) {
       setList(response.data.data);
-      toast.success("Data fetched successfully");
+      //toast.success("Data fetched successfully");
     } else {
       toast.error("Error fetching data");
     }

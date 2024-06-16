@@ -20,7 +20,7 @@ import axios from "axios";
 import { assets } from "../../assets/assets";
 import { toast } from "react-toastify";
 
-const Add = () => {
+const Add = ({ url }) => {
   const [image, setImage] = useState(null);
   const [data, setData] = useState({
     name: "",
@@ -68,10 +68,7 @@ const Add = () => {
     formData.append("image", image);
 
     try {
-      const response = await axios.post(
-        "http://localhost:4000/api/shoe/add",
-        formData
-      );
+      const response = await axios.post(`${url}/api/shoe/add`, formData);
       // Reset form
       setData({
         name: "",

@@ -38,6 +38,7 @@ const theme = createTheme({
 });
 
 const App = () => {
+  const url = "http://localhost:4000";
   return (
     <ThemeProvider theme={theme}>
       <Navbar />
@@ -48,9 +49,9 @@ const App = () => {
         </Box>
         <Box flex={4}>
           <Routes>
-            <Route path={"/add"} element={<Add />} />
-            <Route path={"/List"} element={<List />} />
-            <Route path={"/orders"} element={<Order />} />
+            <Route path={"/add"} element={<Add url={url} />} />
+            <Route path={"/List"} element={<List url={url} />} />
+            <Route path={"/orders"} element={<Order url={url} />} />
           </Routes>
         </Box>
       </Box>
