@@ -7,6 +7,8 @@ import Add from "./pages/Add/Add";
 import List from "./pages/List/List";
 import Order from "./pages/Order/Order";
 
+import { orange } from "@mui/material/colors";
+
 //theme imports
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -14,7 +16,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#FD7401",
+      main: orange[500],
     },
     secondary: {
       main: "#FCA054",
