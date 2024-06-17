@@ -28,22 +28,36 @@ const ShoeItem = ({ id, name, price, description, image }) => {
           ) : (
             <Box sx={{ display: "flex" }}>
               <RemoveCircleOutlineRoundedIcon
-                onClick={() => removeFromCart(id)}
-                style={{ color: "red" }}
+                onClick={() => {
+                  if (cartItems[id] > 4) {
+                    removeFromCart(id);
+                  }
+                }}
+                style={{
+                  color: cartItems[id] <= 4 ? "grey" : "red",
+                  pointerEvents: cartItems[id] <= 4 ? "none" : "auto",
+                }}
               />
               <Typography sx={{ pl: 1, pr: 1 }}>{cartItems[id]}</Typography>
               <AddCircleOutlineOutlinedIcon
-                onClick={() => addToCart(id)}
-                style={{ color: "green" }}
+                onClick={() => {
+                  if (cartItems[id] < 13) {
+                    addToCart(id);
+                  }
+                }}
+                style={{
+                  color: cartItems[id] >= 13 ? "grey" : "green",
+                  pointerEvents: cartItems[id] >= 13 ? "none" : "auto",
+                }}
               />
             </Box>
           )}
         </Box>
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <FormControl sx={{ mt: 1, minWidth: 120 }} size="small">
-            <InputLabel id=" demo-select-small-label">Size</InputLabel>
+            <InputLabel id="demo-select-small-label">Size</InputLabel>
             <Select
-              labelId=" demo-select-small-label"
+              labelId="demo-select-small-label"
               id="demo-select-small"
               value={size[id] || ""}
               onChange={(event) => handleChange(id, event)}
