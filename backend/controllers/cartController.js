@@ -35,6 +35,15 @@ const removeFromCart = async (req, res) => {
 };
 
 //fetch user cart data
-const getCart = async (req, res) => {};
+const getCart = async (req, res) => {
+  try {
+    let userData = await userModel.findOne({ _id: req.body.userId });
+    let cartData = await userData.cartData;
+    res.status(200).json({ cartData });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
 
 export { addToCart, removeFromCart, getCart };
