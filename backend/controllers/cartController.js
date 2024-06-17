@@ -6,7 +6,7 @@ const addToCart = async (req, res) => {
     let userData = await userModel.findOne({ _id: req.body.userId });
     let cartData = await userData.cartData;
     if (!cartData[req.body.itemId]) {
-      cartData[req.body.itemId] = 7;
+      cartData[req.body.itemId] = 1;
     } else {
       cartData[req.body.itemId] += 1;
     }
