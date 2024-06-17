@@ -62,12 +62,25 @@ const StoreContextProvider = (props) => {
     setShoeList(response.data.data);
   };
 
+  //to keep the items in the cart after refresh
+  const loadCartData = async (token) => {
+    const response = await axios.post(
+      `${url}/api/cart/get`,
+      {},
+      {
+        headers: { token },
+      }
+    );
+    setCartItems(response.data.cartData);
+  };
+
   //prevet refresh logout
   useEffect(() => {
     async function fetchData() {
       await fetchShoeList();
       if (localStorage.getItem("token")) {
         setToken(localStorage.getItem("token"));
+        await loadCartData(localStorage.getItem("token")); //to keep the items in the cart after refresh
       }
     }
     fetchData();
