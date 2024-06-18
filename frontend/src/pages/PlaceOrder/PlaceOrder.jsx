@@ -1,11 +1,65 @@
 import { Stack, Box, TextField, Typography, Button } from "@mui/material";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { StoreContext } from "../../context/StoreContext";
+import axios from "axios";
 
 const PlaceOrder = () => {
-  const { getTotalCartAmount } = useContext(StoreContext);
+  const { getTotalCartAmount, token, shoe_list, cartItems, url } =
+    useContext(StoreContext);
+
+  const [data, setData] = React.useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    street: "",
+    city: "",
+    state: "",
+    zipCode: "",
+    country: "",
+    phone: "",
+  });
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setData((data) => ({ ...data, [name]: value }));
+  };
+
+  // useEffect(() => {
+  //   console.log(data);
+  // }, [data]);
+
+  const placeOrder = async (event) => {
+    event.preventDefault();
+    let orderItems = [];
+    shoe_list.map((item) => {
+      if (cartItems[item._id] > 0) {
+        let itemInfo = item;
+        itemInfo["quantity"] = cartItems[item._id];
+        orderItems.push(itemInfo);
+      }
+    });
+    //console.log(orderItems);
+    let orderData = {
+      address: data,
+      items: orderItems,
+      amount: getTotalCartAmount() + 2,
+    };
+    //call API
+    let response = await axios.post(url + "/api/order/place", orderData, {
+      headers: { token },
+    });
+    if (response.data.success) {
+      const { session_url } = response.data;
+      window.location.replace(session_url);
+      //alert("Order Placed Successfully");
+    } else {
+      alert("Order Failed");
+    }
+  };
+
   return (
-    <div>
+    <form onSubmit={placeOrder}>
       <Stack
         display={"flex"}
         direction={{ sm: "column", md: "row" }}
@@ -17,29 +71,93 @@ const PlaceOrder = () => {
           </Typography>
           <Stack display={"flex"} direction={"row"} spacing={2}>
             <TextField
+              name="firstName"
+              onChange={handleChange}
+              value={data.firstName}
               flex={1}
               label="Full Name"
               variant="outlined"
               size="small"
+              required
             />
             <TextField
+              name="lastName"
+              onChange={handleChange}
+              value={data.lastName}
               flex={1}
               label="Last Name"
               variant="outlined"
               size="small"
+              required
             />
           </Stack>
-          <TextField label="Email Address" variant="outlined" size="small" />
-          <TextField label="Street" variant="outlined" size="small" />
+          <TextField
+            name="email"
+            onChange={handleChange}
+            value={data.email}
+            label="Email Address"
+            variant="outlined"
+            size="small"
+            required
+          />
+          <TextField
+            name="street"
+            onChange={handleChange}
+            value={data.street}
+            label="Street"
+            variant="outlined"
+            size="small"
+            required
+          />
           <Stack direction={"row"} spacing={2}>
-            <TextField label="City" variant="outlined" size="small" />
-            <TextField label="State" variant="outlined" size="small" />
+            <TextField
+              name="city"
+              onChange={handleChange}
+              value={data.city}
+              label="City"
+              variant="outlined"
+              size="small"
+              required
+            />
+            <TextField
+              name="state"
+              onChange={handleChange}
+              value={data.state}
+              label="State"
+              variant="outlined"
+              size="small"
+              required
+            />
           </Stack>
           <Stack direction={"row"} spacing={2}>
-            <TextField label="Zip Code" variant="outlined" size="small" />
-            <TextField label="Country" variant="outlined" size="small" />
+            <TextField
+              name="zipCode"
+              onChange={handleChange}
+              value={data.zipCode}
+              label="Zip Code"
+              variant="outlined"
+              size="small"
+              required
+            />
+            <TextField
+              name="country"
+              onChange={handleChange}
+              value={data.country}
+              label="Country"
+              variant="outlined"
+              size="small"
+              required
+            />
           </Stack>
-          <TextField label="Phone Number" variant="outlined" size="small" />
+          <TextField
+            name="phone"
+            onChange={handleChange}
+            value={data.phone}
+            label="Phone Number"
+            variant="outlined"
+            size="small"
+            required
+          />
         </Stack>
 
         <Stack flex={1} id="Totals">
@@ -66,11 +184,13 @@ const PlaceOrder = () => {
             </Stack>
           </Box>
           <Box sx={{ mt: 2 }}>
-            <Button variant="contained">PROCEED TO CHECKOUT</Button>
+            <Button type="submit" variant="contained">
+              PROCEED TO CHECKOUT
+            </Button>
           </Box>
         </Stack>
       </Stack>
-    </div>
+    </form>
   );
 };
 
