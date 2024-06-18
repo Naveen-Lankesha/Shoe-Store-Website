@@ -10,6 +10,7 @@ import PlaceOrder from "./pages/PlaceOrder/PlaceOrder";
 import Footer from "./components/Footer/Footer";
 import LoginPopUp from "./components/LoginPopUp/LoginPopUp";
 import Verify from "./pages/Verify/Verify";
+import MyOrders from "./pages/Myorders/MyOrders";
 
 // Create a custom theme
 const theme = createTheme({
@@ -49,6 +50,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/place-order" element={<PlaceOrder />} />
           <Route path="/verify" element={<Verify />} />
+          <Route path="/myorders" element={<MyOrders />} />
         </Route>
       </Routes>
       <Footer />
