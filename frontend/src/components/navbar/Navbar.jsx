@@ -360,7 +360,11 @@ export default function ButtonAppBar({ setShowLogin }) {
         }}>
         <DialogActions>
           <Stack>
-            <Button color="primary">Profile</Button>
+            <Button
+              onClick={() => (navigate("/myorders"), handleDialogClose())}
+              color="primary">
+              Orders
+            </Button>
             <Button onClick={handleLogout} color="primary">
               Logout
             </Button>
