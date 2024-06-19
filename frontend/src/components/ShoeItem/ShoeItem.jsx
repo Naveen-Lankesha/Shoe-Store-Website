@@ -1,8 +1,18 @@
-import { Paper, Box, Typography } from "@mui/material";
+import {
+  Paper,
+  Box,
+  Typography,
+  Stack,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+} from "@mui/material";
 import React, { useContext } from "react";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutlineRounded";
 import { StoreContext } from "../../context/StoreContext";
+
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 //size
 import InputLabel from "@mui/material/InputLabel";
@@ -10,7 +20,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-const ShoeItem = ({ id, name, price, description, image }) => {
+const ShoeItem = ({ id, name, price, description, image, category }) => {
   const { size, handleChange, cartItems, addToCart, removeFromCart, url } =
     useContext(StoreContext);
 
@@ -64,11 +74,23 @@ const ShoeItem = ({ id, name, price, description, image }) => {
         </Box>
       </Box>
       <Box sx={{ p: 2 }}>
-        <h3>{name}</h3>
-        <p>{description}</p>
-        <Typography variant="h6" sx={{ color: "#FD7401" }}>
-          £{price}
-        </Typography>
+        <Stack display={"flex"} direction="row" justifyContent="space-between">
+          <Box flex={6}>
+            <h2>{category}</h2>
+            <h3>{name}</h3>
+          </Box>
+          <Typography flex={1} variant="h5" sx={{ color: "#FD7401" }}>
+            £{price}
+          </Typography>
+        </Stack>
+
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1-content"
+            id="panel1-header"></AccordionSummary>
+          <AccordionDetails>{description}</AccordionDetails>
+        </Accordion>
       </Box>
     </Paper>
   );

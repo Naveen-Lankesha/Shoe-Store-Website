@@ -13,8 +13,15 @@ const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
   const [size, setSize] = useState({}); // Update the initial state to be an object
 
-  const handleChange = (id, event) => {
+  const handleChange = async (id, event) => {
     setSize((prevSize) => ({ ...prevSize, [id]: event.target.value }));
+    if (token) {
+      await axios.post(
+        url + "/api/cart/updateShoeSize",
+        { itemId: id, size: event.target.value },
+        { headers: { token } }
+      );
+    }
   };
 
   const addToCart = async (itemId) => {
@@ -74,6 +81,18 @@ const StoreContextProvider = (props) => {
     setCartItems(response.data.cartData);
   };
 
+  //to keep the shoeSize in the cart after refresh
+  const loadShoeSize = async (token) => {
+    const response = await axios.post(
+      `${url}/api/cart/getShoeSize`,
+      {},
+      {
+        headers: { token },
+      }
+    );
+    setSize(response.data.shoeSize);
+  };
+
   //prevet refresh logout
   useEffect(() => {
     async function fetchData() {
@@ -81,6 +100,7 @@ const StoreContextProvider = (props) => {
       if (localStorage.getItem("token")) {
         setToken(localStorage.getItem("token"));
         await loadCartData(localStorage.getItem("token")); //to keep the items in the cart after refresh
+        await loadShoeSize(localStorage.getItem("token")); //to keep the shoeSize in the cart after refresh
       }
     }
     fetchData();

@@ -3,6 +3,13 @@ import React from "react";
 import LandImg from "../../assets/frontend_assets/LandingStock2.png";
 
 const Header = () => {
+  const handleMenuClick = () => {
+    const menuElement = document.getElementById("menu");
+    if (menuElement) {
+      menuElement.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <Paper
       elevation={5}
@@ -45,6 +52,7 @@ const Header = () => {
           </Typography>
 
           <Button
+            onClick={handleMenuClick}
             variant="contained"
             sx={{
               borderRadius: 5,
