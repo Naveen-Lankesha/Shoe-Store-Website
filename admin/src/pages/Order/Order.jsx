@@ -35,8 +35,10 @@ const Order = ({ url }) => {
     fetchOrders();
   }, []);
   return (
-    <Box sx={{ p: 8 }}>
-      <Typography variant="h4">Orders</Typography>
+    <Box sx={{ p: 4 }}>
+      <Typography variant="h6" sx={{ fontWeight: 600 }}>
+        Orders
+      </Typography>
       <Stack spacing={2}>
         {orders.map((order, index) => (
           <Paper sx={{ p: 2 }} key={index}>
