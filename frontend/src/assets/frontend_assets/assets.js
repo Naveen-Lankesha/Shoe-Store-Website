@@ -1,7 +1,6 @@
 import basket_icon from "./basket_icon.png";
 import logo from "./logo.svg";
 import cloudlogo from "./cloudlogo.png";
-import header_img from "./header_img.png";
 import search_icon from "./search_icon.png";
 
 import menu_1 from "./Adidas_logo.png";
@@ -74,7 +73,6 @@ export const assets = {
   logo,
   cloudlogo,
   basket_icon,
-  header_img,
   search_icon,
   rating_starts,
   add_icon_green,
