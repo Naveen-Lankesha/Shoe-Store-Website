@@ -5,7 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const PlaceOrder = () => {
-  const { getTotalCartAmount, token, shoe_list, cartItems, url } =
+  const { getTotalCartAmount, token, shoe_list, cartItems, size, url } =
     useContext(StoreContext);
 
   const [data, setData] = React.useState({
@@ -37,6 +37,7 @@ const PlaceOrder = () => {
       if (cartItems[item._id] > 0) {
         let itemInfo = item;
         itemInfo["quantity"] = cartItems[item._id];
+        itemInfo["size"] = size[item._id];
         orderItems.push(itemInfo);
       }
     });
