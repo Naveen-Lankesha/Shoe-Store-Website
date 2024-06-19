@@ -65,4 +65,16 @@ const getCart = async (req, res) => {
   }
 };
 
-export { addToCart, removeFromCart, getCart, updateShoeSize };
+//fetch user shoeSize data
+const getSize = async (req, res) => {
+  try {
+    let userData = await userModel.findOne({ _id: req.body.userId });
+    let shoeSize = await userData.shoeSize;
+    res.status(200).json({ shoeSize });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+export { addToCart, removeFromCart, getCart, updateShoeSize, getSize };
