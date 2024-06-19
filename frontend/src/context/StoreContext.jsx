@@ -13,8 +13,15 @@ const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
   const [size, setSize] = useState({}); // Update the initial state to be an object
 
-  const handleChange = (id, event) => {
+  const handleChange = async (id, event) => {
     setSize((prevSize) => ({ ...prevSize, [id]: event.target.value }));
+    if (token) {
+      await axios.post(
+        url + "/api/cart/updateShoeSize",
+        { itemId: id, size: event.target.value },
+        { headers: { token } }
+      );
+    }
   };
 
   const addToCart = async (itemId) => {
