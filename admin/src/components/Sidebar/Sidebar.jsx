@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Box, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
@@ -14,6 +14,20 @@ const Sidebar = () => {
   const handleSelect = (item) => {
     setSelected(item);
   };
+
+  useEffect(() => {
+    // Prevent the sidebar from scrolling
+    document.body.style.overflow = "hidden";
+
+    // Set the selected item based on the current route
+    if (window.location.pathname === "/add") {
+      setSelected("add");
+    } else if (window.location.pathname === "/list") {
+      setSelected("list");
+    } else if (window.location.pathname === "/orders") {
+      setSelected("orders");
+    }
+  }, []);
 
   return (
     <Box sx={{ backgroundColor: "white", minHeight: "100vh" }}>
