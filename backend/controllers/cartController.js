@@ -18,6 +18,37 @@ const addToCart = async (req, res) => {
   }
 };
 
+// API for updating shoe size by passing values from select option
+const updateShoeSize = async (req, res) => {
+  try {
+    let userData = await userModel.findOne({ _id: req.body.userId });
+    let shoeSize = await userData.shoeSize;
+
+    await userModel.findByIdAndUpdate(req.body.userId, {
+      shoeSize: { ...shoeSize, [req.body.itemId]: req.body.size },
+    });
+
+    // shoeSize[req.body.shoeId] = req.body.size;
+    // await userModel.findByIdAndUpdate(req.body.userId, { shoeSize });
+    res.json({ success: true, message: "Shoe size updated" });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: "Shoe size not updated" });
+  }
+};
+
+// const updateStatus = async (req, res) => {
+//   try {
+//     await orderModel.findByIdAndUpdate(req.body.orderId, {
+//       status: req.body.status,
+//     });
+//     res.json({ success: true, message: "Status updated" });
+//   } catch (error) {
+//     console.log(error);
+//     res.json({ success: false, message: "Status not updated" });
+//   }
+// };
+
 //remove items from user cart
 const removeFromCart = async (req, res) => {
   try {
@@ -46,4 +77,4 @@ const getCart = async (req, res) => {
   }
 };
 
-export { addToCart, removeFromCart, getCart };
+export { addToCart, removeFromCart, getCart, updateShoeSize };
