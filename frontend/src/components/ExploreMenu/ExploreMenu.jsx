@@ -60,11 +60,11 @@ const ExploreMenu = ({ category, setCategory }) => {
                   sx={{
                     display: "flex",
                     justifyContent: "center",
-                    mt: 4,
+                    mt: 6,
                     mb: 2,
                     "&:hover": {
                       cursor: "pointer",
-                      transform: "scale(1.1)",
+                      //transform: "scale(1.1)",
                       transition: "transform 0.3s ease-in-out",
                     },
                     transform:
