@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Card, Grid, Paper, Stack, Typography } from "@mui/material";
 import { menu_list } from "../../assets/frontend_assets/assets";
+import { orange } from "@mui/material/colors";
 
 const ExploreMenu = ({ category, setCategory }) => {
   const handleBrandClick = () => {
@@ -12,28 +13,40 @@ const ExploreMenu = ({ category, setCategory }) => {
 
   return (
     <div id="menu">
-      <Box sx={{ p: 8, m: 8 }}>
-        <Typography
-          variant="h4"
+      <Box sx={{ p: 8, m: 8, pt: 2 }}>
+        <Paper
+          elevation={4}
           sx={{
-            fontSize: { md: 40, lg: 50 },
-            color: "white",
-            textAlign: "center",
-            fontWeight: 600,
+            background: orange[300],
+            p: 6,
+            borderRadius: 5,
+            //borderBottomLeftRadius: 0,
+            //borderBottomRightRadius: 0,
           }}>
-          Explore Our Brands
-        </Typography>
-        <Typography
-          sx={{
-            textAlign: "center",
-            fontWeight: 600,
-            fontSize: { sm: 16, md: 20, lg: 24 },
-            mt: 2,
-            mb: 6,
-          }}>
-          Discover excellence in diversity: Choose from an array of top brands
-          for every stride.
-        </Typography>
+          <Typography
+            variant="h3"
+            sx={{
+              fontSize: { xs: 32, sm: 38, md: 40, lg: 64 },
+              color: "black",
+              textAlign: "center",
+              fontWeight: 600,
+              //borderBottom: "2px solid white",
+            }}>
+            Explore Our Brands
+          </Typography>
+          <Typography
+            sx={{
+              color: "white",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: { sm: 16, md: 20, lg: 24 },
+              mt: 2,
+              mb: 2,
+            }}>
+            Discover excellence in diversity: Choose from an array of top brands
+            for every stride.
+          </Typography>
+        </Paper>
         <div>
           <Grid container spacing={4}>
             {menu_list.map((item, index) => {
