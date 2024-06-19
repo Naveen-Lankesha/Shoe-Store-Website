@@ -18,7 +18,7 @@ const MyOrders = () => {
       }
     );
     setdata(response.data.data);
-    console.log(response.data.data);
+    //console.log(response.data.data);
   };
 
   useEffect(() => {
@@ -75,7 +75,7 @@ const MyOrders = () => {
                       <b>{order.status}</b>
                     </Typography>
                     <Box flex={1}>
-                      <Button>Track Order</Button>
+                      <Button onClick={fetchOrders}>Track Order</Button>
                     </Box>
                   </Stack>
                 </div>
