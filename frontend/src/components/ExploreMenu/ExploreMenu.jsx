@@ -14,39 +14,30 @@ const ExploreMenu = ({ category, setCategory }) => {
   return (
     <div id="menu">
       <Box sx={{ p: 8, m: 8, pt: 2 }}>
-        <Paper
-          elevation={4}
+        <Typography
+          variant="h3"
           sx={{
-            background: orange[400],
-            p: 6,
-            borderRadius: 5,
-            //borderBottomLeftRadius: 0,
-            //borderBottomRightRadius: 0,
+            fontSize: { xs: 32, sm: 38, md: 40, lg: 64 },
+            color: "black",
+            textAlign: "center",
+            fontWeight: 600,
+            //borderBottom: "2px solid white",
           }}>
-          <Typography
-            variant="h3"
-            sx={{
-              fontSize: { xs: 32, sm: 38, md: 40, lg: 64 },
-              color: "black",
-              textAlign: "center",
-              fontWeight: 600,
-              //borderBottom: "2px solid white",
-            }}>
-            Explore Our Brands
-          </Typography>
-          <Typography
-            sx={{
-              color: "white",
-              textAlign: "center",
-              fontWeight: 600,
-              fontSize: { sm: 16, md: 20, lg: 24 },
-              mt: 2,
-              mb: 2,
-            }}>
-            Discover excellence in diversity: Choose from an array of top brands
-            for every stride.
-          </Typography>
-        </Paper>
+          Explore Our Brands
+        </Typography>
+        <Typography
+          sx={{
+            color: "white",
+            textAlign: "center",
+            fontWeight: 600,
+            fontSize: { sm: 16, md: 20, lg: 24 },
+            mt: 2,
+            mb: 2,
+          }}>
+          Discover excellence in diversity: Choose from an array of top brands
+          for every stride.
+        </Typography>
+
         <div>
           <Grid container spacing={4}>
             {menu_list.map((item, index) => {
