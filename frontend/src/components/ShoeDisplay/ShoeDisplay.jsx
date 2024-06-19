@@ -43,6 +43,7 @@ const ShoeDisplay = ({ category }) => {
                   description={item.description}
                   price={item.price}
                   image={item.image}
+                  category={item.category}
                 />
               </Grid>
             ))}

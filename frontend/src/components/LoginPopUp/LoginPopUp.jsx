@@ -64,8 +64,8 @@ const LoginPopUp = ({ setShowLogin }) => {
             }}
             style={{
               position: "absolute",
-              top: 4,
-              right: 4,
+              top: 5,
+              right: 5,
               cursor: "pointer",
               color: "orange",
             }}

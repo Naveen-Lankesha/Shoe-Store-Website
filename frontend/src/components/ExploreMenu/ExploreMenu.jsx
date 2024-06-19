@@ -17,7 +17,7 @@ const ExploreMenu = ({ category, setCategory }) => {
         <Paper
           elevation={4}
           sx={{
-            background: orange[300],
+            background: orange[400],
             p: 6,
             borderRadius: 5,
             //borderBottomLeftRadius: 0,
