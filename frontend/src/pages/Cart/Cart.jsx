@@ -28,7 +28,7 @@ const Cart = () => {
           Brand
         </Typography>
         <Typography flex={1} fontWeight="bold">
-          Type
+          Name
         </Typography>
         <Typography flex={1} fontWeight="bold">
           Size
@@ -60,8 +60,8 @@ const Cart = () => {
                     style={{ maxWidth: "90px" }}
                   />
                 </Box>
+                <Typography flex={1}>{item.category}</Typography>
                 <Typography flex={1}>{item.name}</Typography>
-                <Typography flex={1}>{item.description}</Typography>
 
                 <Typography flex={1}>{size[item._id]}</Typography>
                 <Typography flex={1}>£{item.price}</Typography>
