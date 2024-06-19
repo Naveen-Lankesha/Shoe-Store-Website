@@ -43,7 +43,7 @@ function App() {
         <LoginPopUp setShowLogin={setShowLogin} />
       </Dialog>
       <Navbar setShowLogin={setShowLogin} />
-
+      <Box sx={{ mt: 8 }}></Box>
       <Routes>
         <Route>
           <Route path="/" element={<Home />} />
