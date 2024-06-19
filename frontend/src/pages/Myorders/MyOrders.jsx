@@ -52,7 +52,9 @@ const MyOrders = () => {
                           return (
                             item.name +
                             " (" +
-                            item.description +
+                            item.category +
+                            " -Size: " +
+                            item.size +
                             ") x " +
                             item.quantity
                           );
@@ -60,7 +62,9 @@ const MyOrders = () => {
                           return (
                             item.name +
                             " (" +
-                            item.description +
+                            item.category +
+                            " -Size: " +
+                            item.size +
                             ") x " +
                             item.quantity +
                             ", "
