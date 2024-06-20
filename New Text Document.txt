@@ -1,9 +1,0 @@
-npm create vite@latest
->>frontend
->>react
->>js
-
-cd frontend
-npm install
-npm i react-router-dom
-npm run dev
